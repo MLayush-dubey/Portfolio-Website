@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     const text = await cloudflareAIChat([
       { role: "system", content: "Answer using ONLY the retrieved context below. Cite [n]. 2-4 sentences. No markdown." },
       { role: "user", content: `RETRIEVED CONTEXT:\n${context}\n\nQUESTION: ${parsed.data.query}` },
-    ], { temperature: 0.2, maxTokens: 260 });
+    ], { temperature: 0.2, maxTokens: 600 });
     return Response.json({ text });
   } catch (error) {
     const message = error instanceof Error ? error.message : "model_error";

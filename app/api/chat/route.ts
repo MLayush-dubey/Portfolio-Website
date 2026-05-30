@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const text = await cloudflareAIChat([
       { role: "system", content: SYSTEM_PERSONA },
       ...parsed.data.messages,
-    ], { maxTokens: 700 });
+    ], { maxTokens: 1200 });
     return Response.json({ text });
   } catch (error) {
     const message = error instanceof Error ? error.message : "model_error";

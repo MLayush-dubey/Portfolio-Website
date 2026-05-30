@@ -22,7 +22,7 @@ type CloudflareAIResponse = {
 export async function cloudflareAIChat(messages: ChatMessage[], options?: { temperature?: number; maxTokens?: number }) {
   const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
   const apiToken = process.env.CLOUDFLARE_API_TOKEN;
-  const model = process.env.CLOUDFLARE_AI_MODEL || "@cf/google/gemma-4-26b-a4b-it";
+  const model = process.env.CLOUDFLARE_AI_MODEL || "@cf/meta/llama-3.1-8b-instruct";
 
   if (!accountId || !apiToken) {
     throw new Error("Cloudflare Workers AI is not configured");
@@ -37,7 +37,7 @@ export async function cloudflareAIChat(messages: ChatMessage[], options?: { temp
     body: JSON.stringify({
       messages,
       temperature: options?.temperature ?? 0.35,
-      max_tokens: options?.maxTokens ?? 700,
+      max_tokens: options?.maxTokens ?? 1024,
     }),
   });
 
@@ -48,9 +48,10 @@ export async function cloudflareAIChat(messages: ChatMessage[], options?: { temp
 
   return (
     json.result?.response ||
-    json.result?.text ||
     json.result?.choices?.[0]?.message?.content ||
+    json.result?.text ||
     json.result?.choices?.[0]?.text ||
+    json.result?.choices?.[0]?.message?.reasoning ||
     ""
   ).trim();
 }

@@ -4,7 +4,7 @@ Use only these facts:
 - Location: Dubai, UAE.
 - Current: AI/ML Engineer at Quantum Horizon.
 - Education: B.Tech AI/ML, Thakur College of Engineering, Mumbai, GPA 8.20.
-- Past roles: Samarth Life Sciences, Bhairav Builders, Arkham Archives, IntellAI.
+- Past roles: Samarth Life Sciences, Bhairav Builders, Arkham Archives, IndiqAI.
 - Specialties: LLMs, GenAI agents, RAG, recommender systems, MLOps, CV, NLP, applied ML.
 - Featured projects: Hybrid RecSys, Fraud Detection, MLOps IMDB, Stock Multi-Agent, RAG Research Bot.
 - Stack: Python, PyTorch, TensorFlow, scikit-learn, LightFM, XGBoost, LangChain, CrewAI, LlamaIndex, ChromaDB, Pinecone, FastAPI, MLflow, DVC, Docker, Kubernetes, AWS.
