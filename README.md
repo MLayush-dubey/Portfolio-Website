@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ayush Dubey — AI/ML Portfolio ("Latent Space")
 
-## Getting Started
+A full-page personal portfolio for an AI/ML engineer, themed around AI/ML visual
+metaphors: an animated neural-embedding hero canvas, a terminal-style status bar with live
+"training" metrics, an interactive node-graph tech stack, an in-page AI chat agent, and a
+working **RAG (retrieve → rerank → generate)** pipeline demo.
 
-First, run the development server:
+**Live:** https://ayush-ai-portfolio.vercel.app
+
+## Tech stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 16 (App Router) + React 19 |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 + CSS custom-property design tokens |
+| Animation | Framer Motion + native Canvas API |
+| AI / Chat + RAG | Cloudflare Workers AI (`@cf/meta/llama-3.1-8b-instruct`) via server route |
+| Rate limiting | Upstash Redis (`@upstash/ratelimit`), in-memory fallback in dev |
+| Validation | Zod |
+| Hosting | Vercel |
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # then fill in the values
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+See `.env.example`. Required for the chat/RAG features:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_AI_MODEL`
 
-## Learn More
+Optional:
 
-To learn more about Next.js, take a look at the following resources:
+- `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` — production rate limiting
+- `NEXT_PUBLIC_SITE_URL` — metadata base URL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`.env.local` is git-ignored — never commit real tokens.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Dev server (Webpack) |
+| `npm run dev:turbo` | Dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project layout
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+  page.tsx              # entry → PortfolioApp
+  _components/          # UI
+  _lib/                 # AI persona / prompt
+  api/chat, api/rag-generate   # server routes (Cloudflare AI)
+lib/                    # cloudflare-ai client, ratelimit
+public/                 # static assets (og image, resume, icons)
+docs/                   # plan, audit, and the original design reference (not built)
+```
+
+## Deployment
+
+Hosted on Vercel. To ship the current local state to production:
+
+```bash
+vercel --prod
+```
+
+Set the same environment variables in the Vercel project settings as in `.env.local`.
+
+---
+
+Design reference and build notes live in [`docs/`](./docs/README.md).
