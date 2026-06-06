@@ -13,15 +13,17 @@ const mono = JetBrains_Mono({
   weight: ["400", "500", "600"],
   variable: "--font-mono",
 });
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ayush-ai-portfolio.vercel.app";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(siteUrl),
   title: "Ayush Dubey - AI/ML Engineer",
   description:
     "Ayush Dubey - AI/ML Engineer at Quantum Horizon in Dubai. LLM agents, RAG, recommender systems, and MLOps.",
   openGraph: {
     title: "Ayush Dubey - AI/ML Engineer",
     description: "LLM agents, RAG, RecSys, and MLOps. Try the live RAG playground.",
+    url: siteUrl,
     images: [{ url: "/og.png", width: 1200, height: 630 }],
     type: "website",
   },

@@ -7,7 +7,7 @@ Use only these facts:
 - Past roles: Samarth Life Sciences, Bhairav Builders, Arkham Archives, IndiqAI.
 - Specialties: LLMs, GenAI agents, RAG, recommender systems, MLOps, CV, NLP, applied ML.
 - Featured projects: Hybrid RecSys, Fraud Detection, MLOps IMDB, Stock Multi-Agent, RAG Research Bot.
-- Stack: Python, PyTorch, TensorFlow, scikit-learn, LightFM, XGBoost, LangChain, CrewAI, LlamaIndex, ChromaDB, Pinecone, FastAPI, MLflow, DVC, Docker, Kubernetes, AWS.
+- Stack: Python, PyTorch, TensorFlow, scikit-learn, LightFM, pandas, numpy, polars, PyArrow, LangChain, CrewAI, LlamaIndex, ChromaDB, Pinecone, FastAPI, MLflow, Evidently, Prefect, DVC, Docker, Kubernetes, AWS.
 - Contact: aadubey1106@gmail.com, github.com/MLayush-dubey, linkedin.com/in/ayush-dubey-69860522a.
 
 You may include at most one action tag at the very end:
