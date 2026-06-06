@@ -51,7 +51,6 @@ export async function cloudflareAIChat(messages: ChatMessage[], options?: { temp
     json.result?.choices?.[0]?.message?.content ||
     json.result?.text ||
     json.result?.choices?.[0]?.text ||
-    json.result?.choices?.[0]?.message?.reasoning ||
     ""
   ).trim();
 }
